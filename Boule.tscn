@@ -1,0 +1,66 @@
+[gd_scene load_steps=10 format=3 uid="uid://cydeyqxxhh0h8"]
+
+[ext_resource type="Texture2D" uid="uid://14uqpol885ml" path="res://Texture/ball.png" id="1_rgjf5"]
+[ext_resource type="Script" path="res://Boule.gd" id="1_vi7yu"]
+[ext_resource type="AudioStream" uid="uid://bmes0hectkkfy" path="res://Sound/Bruit Raquette 2.wav" id="3_sc8cc"]
+[ext_resource type="AudioStream" uid="uid://f8euc27oypp0" path="res://Sound/Bruit Raquette.wav" id="3_u0peb"]
+[ext_resource type="AudioStream" uid="uid://dlmuxa8pknrbp" path="res://Sound/Bruit Raquette 3.wav" id="4_1nju3"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_mm6yg"]
+bounce = 0.75
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yw3of"]
+radius = 38.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_o762m"]
+streams_count = 3
+stream_0/stream = ExtResource("3_u0peb")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("4_1nju3")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("3_sc8cc")
+stream_2/weight = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_r5dc0"]
+radius = 38.0
+
+[node name="Node2D" type="RigidBody2D"]
+visibility_layer = 2
+position = Vector2(568, -152)
+collision_layer = 2
+collision_mask = 6
+mass = 2.0
+physics_material_override = SubResource("PhysicsMaterial_mm6yg")
+gravity_scale = 2.0
+linear_damp = -0.01
+script = ExtResource("1_vi7yu")
+
+[node name="ball_Hitbox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 6
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ball_Hitbox"]
+shape = SubResource("CircleShape2D_yw3of")
+metadata/_edit_lock_ = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(109, -12)
+stream = SubResource("AudioStreamRandomizer_o762m")
+max_distance = 500000.0
+attenuation = 0.0089742
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-2, 7)
+texture = ExtResource("1_rgjf5")
+hframes = 3
+vframes = 4
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_r5dc0")
+metadata/_edit_lock_ = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="area_entered" from="ball_Hitbox" to="." method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="ball_Hitbox" to="." method="_on_area_2d_body_entered"]

@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://crluirfj02j48"]
+
+[ext_resource type="PackedScene" uid="uid://kfdbhnj6mc45" path="res://ui/ui.tscn" id="1_p57i2"]
+[ext_resource type="PackedScene" uid="uid://b83akd406cbr5" path="res://mur.tscn" id="2_7daqk"]
+[ext_resource type="PackedScene" uid="uid://g0hyr8ttbr0j" path="res://Palettiste/Player.tscn" id="3_rx45f"]
+[ext_resource type="PackedScene" uid="uid://cvg5inndmwy4c" path="res://Level/sol HitBox.tscn" id="3_tvmv1"]
+
+[node name="Level" type="Node2D"]
+
+[node name="UI" parent="." instance=ExtResource("1_p57i2")]
+
+[node name="Arène" type="Node2D" parent="."]
+
+[node name="Mur" parent="Arène" instance=ExtResource("2_7daqk")]
+position = Vector2(1885, 522)
+rotation = 1.5708
+
+[node name="Mur4" parent="Arène" instance=ExtResource("2_7daqk")]
+position = Vector2(-2833, 516)
+rotation = 1.5708
+
+[node name="Mur2" parent="Arène" instance=ExtResource("2_7daqk")]
+position = Vector2(1417, 977)
+
+[node name="Mur3" parent="Arène" instance=ExtResource("2_7daqk")]
+position = Vector2(-1415, 977)
+
+[node name="Mur5" parent="Arène" instance=ExtResource("2_7daqk")]
+position = Vector2(1379, -896)
+
+[node name="Mur6" parent="Arène" instance=ExtResource("2_7daqk")]
+position = Vector2(-1453, -896)
+
+[node name="Sol" parent="Arène" instance=ExtResource("3_tvmv1")]
+position = Vector2(-383, 992)
+
+[node name="Camera2D" type="Camera2D" parent="Arène"]
+position = Vector2(-494, -19)
+zoom = Vector2(0.4, 0.4)
+
+[node name="Player" parent="." instance=ExtResource("3_rx45f")]
+position = Vector2(300, 913)

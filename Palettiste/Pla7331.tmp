@@ -1,0 +1,93 @@
+[gd_scene load_steps=9 format=3 uid="uid://g0hyr8ttbr0j"]
+
+[ext_resource type="Script" path="res://Palettiste/Player.gd" id="1_6krfu"]
+[ext_resource type="Texture2D" uid="uid://beo3tyuds64iu" path="res://Texture/Player 64.png" id="1_mcvn1"]
+[ext_resource type="Texture2D" uid="uid://capwwjamne4cm" path="res://Texture/Animation/small_slash_2.png" id="3_yyb3d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ecjd2"]
+size = Vector2(64, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m0r5p"]
+size = Vector2(152, 106)
+
+[sub_resource type="Animation" id="Animation_8v8ir"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HitBox/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_rxpli"]
+resource_name = "Slash"
+length = 0.4
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HitBox/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HitBox/Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 125.533),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tw3qo"]
+_data = {
+"RESET": SubResource("Animation_8v8ir"),
+"Slash": SubResource("Animation_rxpli")
+}
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_6krfu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_mcvn1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ecjd2")
+metadata/_edit_lock_ = true
+
+[node name="HitBox" type="Area2D" parent="."]
+position = Vector2(99, -17)
+
+[node name="Sprite2D" type="Sprite2D" parent="HitBox"]
+position = Vector2(3.75, -0.25)
+scale = Vector2(2.46923, 3.87037)
+texture = ExtResource("3_yyb3d")
+hframes = 4
+metadata/_edit_lock_ = true
+
+[node name="HitBoxSlash" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(9, -5)
+shape = SubResource("RectangleShape2D_m0r5p")
+metadata/_edit_lock_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_tw3qo")
+}
+
+[connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]

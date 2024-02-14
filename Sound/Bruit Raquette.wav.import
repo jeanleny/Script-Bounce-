@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://f8euc27oypp0"
+path="res://.godot/imported/Bruit Raquette.wav-40771bb01d6a8d6b45b3e4bd5af923e8.sample"
+
+[deps]
+
+source_file="res://Sound/Bruit Raquette.wav"
+dest_files=["res://.godot/imported/Bruit Raquette.wav-40771bb01d6a8d6b45b3e4bd5af923e8.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://c0oidjhhfxieq"]
+
+[ext_resource type="AudioStream" uid="uid://bovon6kgyvxck" path="res://Sound/Dilip & Otxhello - Feels.mp3" id="1_1gavs"]
+[ext_resource type="Script" path="res://Music.gd" id="2_ecrqg"]
+
+[node name="Node" type="Node"]
+
+[node name="Music" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("1_1gavs")
+volume_db = -7.932
+script = ExtResource("2_ecrqg")

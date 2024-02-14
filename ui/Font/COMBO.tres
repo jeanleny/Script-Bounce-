@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://b1xu5khyr8rpg"]
+
+[ext_resource type="FontFile" uid="uid://b0455e4uugy1g" path="res://ui/Font/Super Squad.ttf" id="1_m0jxb"]
+
+[resource]
+default_font = ExtResource("1_m0jxb")
+default_font_size = 50

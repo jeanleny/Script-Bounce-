@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://cvg5inndmwy4c"]
+
+[ext_resource type="Script" path="res://Level/sol HitBox.gd" id="1_dhy2h"]
+[ext_resource type="AudioStream" uid="uid://bbn4uqihqbhia" path="res://Sound/Bruit Raté.wav" id="2_fwnn7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4na83"]
+size = Vector2(5198, 106)
+
+[node name="Sol" type="Area2D"]
+collision_layer = 4
+collision_mask = 6
+script = ExtResource("1_dhy2h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_4na83")
+
+[node name="Fail" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_fwnn7")
+volume_db = -15.865
+max_distance = 2e+06
+attenuation = 0.00571909
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
